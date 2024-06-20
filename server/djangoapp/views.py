@@ -13,6 +13,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .models import CarMake, CarModel
 from .populate import initiate
+from .restapis import get_request, analyze_review_sentiments, post_review
 
 
 # Get an instance of a logger
@@ -104,7 +105,7 @@ def get_dealer_details(request, dealer_id):
     if(dealer_id):
         endpoint = "/fetchDealer/"+str(dealer_id)
         dealership = get_request(endpoint)
-        return JsonResponse({"status:"200, "dealer_details":dealership})
+        return JsonResponse({"status":200,"dealer_details":dealership})
     else:
         return JsonResponse({"status":400,"message":"Bad Request"})
 
